@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Espaço MAR | Movimento é Terapia</title>
+<meta name="description" content="MAR, Movimento &amp; Terapia: yoga, mindfulness, neurociência e preparação mental para atletas, praticantes e empresas.">
+<meta property="og:title" content="Espaço MAR | Movimento é Terapia">
+<meta property="og:description" content="Experiências que unem movimento, ciência e presença.">
+<meta property="og:image" content="assets/hero-agua-clara.jpg">
+<link rel="icon" href="assets/icone-petroleo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="scrollcraft.css">
+<style>
+  :root{
+    --sc-canvas:#0E4A57;
+    --sc-surface:#14596b;
+    --sc-ink:#F3FBFD;
+    --sc-ink-soft:#B9DDE6;
+    --sc-accent:#5CE1E6;
+    --sc-accent-ink:#0A3640;
+    --sc-font-display:"Montserrat",system-ui,sans-serif;
+    --sc-font-text:"Montserrat",system-ui,sans-serif;
+    --sc-shadow-color:195 60% 8%;
+    --sc-r-lg:22px; --sc-r-md:14px;
+
+    --petroleo:#0E4A57; --petroleo-fundo:#0B3C47;
+    --turquesa:#00B4D8; --azul:#90E0EF; --ceu:#CAF0F8;
+    --areia:#FFF8EE; --pessego:#FFD6A5; --coral:#FFADAD;
+    --tinta:#0E4A57; --tinta-suave:#3F6671; --acento-claro:#0A7690;
+  }
+  body{background:var(--petroleo-fundo);font-weight:500}
+  .sc-display{font-weight:700;letter-spacing:-.03em}
+  .on-light{--sc-ink:var(--tinta);--sc-ink-soft:var(--tinta-suave);--sc-accent:var(--acento-claro);--sc-accent-ink:#fff;color:var(--sc-ink)}
+  ::selection{background:var(--turquesa);color:#fff}
+
+  .skip{position:fixed;left:12px;top:-60px;z-index:200;background:#fff;color:var(--tinta);padding:10px 16px;border-radius:999px;font-weight:700;text-decoration:none}
+  .skip:focus{top:12px}
+
+  /* ------------------------------------------------------------ CHROME -- */
+  .brand{position:fixed;left:clamp(16px,3vw,40px);top:clamp(14px,2.4vw,28px);z-index:70;display:block;line-height:0}
+  .brand img{height:clamp(46px,5vw,64px);width:auto;transition:opacity .2s}
+  .menu-btn{position:fixed;right:clamp(16px,3vw,40px);top:clamp(14px,2.4vw,28px);z-index:70;min-height:46px;padding:0 22px;border-radius:999px;border:1.5px solid currentColor;background:rgba(14,74,87,.55);backdrop-filter:blur(8px);color:#fff;font:700 .82rem var(--sc-font-text);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:background .16s,color .16s,transform .12s}
+  .menu-btn:hover{background:#fff;color:var(--petroleo)}
+  .menu-btn:active{transform:scale(.97)}
+  .index{position:fixed;inset:0;z-index:90;background:var(--petroleo-fundo);color:#fff;display:grid;place-items:center;padding:96px 24px 40px;opacity:0;visibility:hidden;transition:opacity .24s var(--sc-ease-out),visibility .24s}
+  .index.open{opacity:1;visibility:visible}
+  .index ol{list-style:none;margin:0;padding:0;display:grid;gap:.4rem;text-align:left;width:min(34rem,100%)}
+  .index a{display:block;font-size:clamp(1.8rem,5vw,3rem);font-weight:700;letter-spacing:-.03em;line-height:1.15;text-decoration:none;padding:.35rem 0;border-bottom:1px solid rgba(255,255,255,.14);transition:color .16s,padding-left .24s var(--sc-ease-out)}
+  .index a:hover,.index a:focus-visible{color:var(--sc-accent);padding-left:.6rem}
+  .index .close-x{position:absolute;right:clamp(16px,3vw,40px);top:clamp(14px,2.4vw,28px);min-height:46px;padding:0 22px;border-radius:999px;border:1.5px solid #fff;background:transparent;color:#fff;font:700 .82rem var(--sc-font-text);letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+
+  .ring{position:fixed;left:clamp(16px,3vw,40px);bottom:clamp(16px,3vw,36px);z-index:70;display:flex;align-items:center;gap:12px;pointer-events:none;color:#fff;mix-blend-mode:normal}
+  .ring__disc{width:52px;height:52px;display:grid;place-items:center}
+  .ring__disc i{display:block;width:52px;height:52px;border-radius:50%;border:2px solid currentColor;background:color-mix(in oklab,currentColor 18%,transparent);transform:scale(var(--rs,.6));will-change:transform;box-shadow:0 6px 18px -6px rgba(5,30,38,.55)}
+  .ring__word{font:700 .74rem var(--sc-font-text);letter-spacing:.2em;text-transform:uppercase;text-shadow:0 1px 8px rgba(5,30,38,.55);transition:opacity .2s}
+  .ring.on-lightbg{color:var(--petroleo)}
+  .ring.on-lightbg .ring__word{text-shadow:none}
+
+  .wa-float{position:fixed;right:clamp(14px,2.4vw,28px);bottom:clamp(14px,2.4vw,28px);z-index:70;display:inline-flex;align-items:center;gap:10px;min-height:56px;padding:0 22px 0 18px;border-radius:999px;background:#25D366;color:#073b1d;text-decoration:none;font-weight:700;font-size:.92rem;box-shadow:0 14px 30px -10px rgba(0,0,0,.45);transition:transform .16s,box-shadow .16s}
+  .wa-float:hover{transform:translateY(-3px)}
+  .wa-float:active{transform:scale(.97)}
+  .wa-float svg{width:26px;height:26px}
+  .wa-float[hidden]{display:none}
+  @media (max-width:640px){.wa-float{width:58px;padding:0;justify-content:center}.wa-float span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 30px;border-radius:999px;font:700 .95rem var(--sc-font-text);letter-spacing:-.005em;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .12s,background .16s,color .16s,box-shadow .16s;white-space:nowrap}
+  .btn:active{transform:scale(.97)}
+  .btn--solid{background:#fff;color:var(--petroleo)}
+  .btn--solid:hover{box-shadow:0 14px 30px -14px rgba(0,0,0,.55);transform:translateY(-2px)}
+  .btn--dark{background:var(--petroleo);color:#fff}
+  .btn--dark:hover{background:#0a3a45;box-shadow:0 14px 30px -14px rgba(14,74,87,.7);transform:translateY(-2px)}
+  .btn--line{border-color:currentColor;color:inherit;background:transparent}
+  .btn--line:hover{background:rgba(255,255,255,.14)}
+  .tlink{font-weight:700;text-decoration:none;border-bottom:2px solid var(--sc-accent);padding-bottom:2px;transition:color .16s}
+  .tlink:hover{color:var(--sc-accent)}
+
+  /* ------------------------------------------------------------- 1 HERO -- */
+  .hero{position:relative;height:200svh;background:var(--petroleo)}
+  .hero__stage{position:sticky;top:0;height:100svh;overflow:clip;--hp:0;--mx:0;--my:0}
+  .hero__plate{position:absolute;inset:0;overflow:hidden;background:#2a8fa8}
+  .hero__plate img{position:absolute;inset:-4% -3%;width:106%;height:108%;object-fit:cover;object-position:50% 62%;will-change:transform;transform:translate3d(calc(var(--mx)*-10px),calc(var(--my)*-6px - var(--hp)*3svh),0) scale(calc(1.03 + var(--hp)*.12))}
+  .hero__plate .hero__sea{object-position:50% 38%;transform:translate3d(calc(var(--mx)*-6px),calc(var(--hp)*-2svh),0) scale(calc(1.06 + var(--hp)*.06))}
+  .hero__scrim{position:absolute;inset:0;pointer-events:none;background:linear-gradient(118deg,rgba(7,44,54,.80) 0%,rgba(7,44,54,.52) 30%,rgba(7,44,54,.12) 58%,transparent 72%)}
+  .hero__copy{position:absolute;z-index:3;left:var(--sc-gutter);top:clamp(7.2rem,19svh,11rem);max-width:min(40rem,88vw);color:#fff;transform:translate3d(0,calc(var(--hp)*-12svh),0);opacity:calc(1.1 - var(--hp)*1.25);will-change:transform,opacity}
+  .hero__copy h1{font-size:clamp(2.9rem,1.7rem + 5.6vw,6.2rem);line-height:.96;letter-spacing:-.04em;font-weight:800;margin:0;text-wrap:balance}
+  .hero__copy p{margin:1.4rem 0 0;font-size:var(--sc-t-lg);line-height:1.45;max-width:30ch;color:#E7F7FB;text-shadow:0 1px 12px rgba(5,30,38,.4)}
+  .hero__actions{display:flex;flex-wrap:wrap;align-items:center;gap:1.4rem;margin-top:2.2rem}
+  .hero__actions .tlink{color:#fff;border-color:#fff}
+  .wave{position:absolute;left:-14%;width:128%;bottom:0;display:block;max-width:none;pointer-events:none;will-change:transform;transform:translate3d(calc(var(--hp)*var(--sx)*1vw + var(--mx)*var(--mp)*1px),calc((var(--y0) - var(--hp)*var(--k))*1%),0)}
+  .wave--far{height:72svh;z-index:2;--y0:76;--k:62;--sx:-4;--mp:6;fill:rgba(0,180,216,.55)}
+  .wave--mid{height:96svh;z-index:4;--y0:89;--k:89;--sx:5;--mp:-10;fill:rgba(144,224,239,.92)}
+  .wave--front{height:126svh;z-index:5;--y0:95.4;--k:95.4;--sx:-6;--mp:14;fill:var(--petroleo-fundo)}
+  @media (max-width:700px){
+    .hero__copy{top:clamp(6.4rem,15svh,9rem)}
+    .hero__copy h1{font-size:clamp(2.6rem,12vw,3.6rem)}
+    .hero__scrim{background:linear-gradient(180deg,rgba(7,44,54,.82) 0%,rgba(7,44,54,.5) 38%,transparent 62%)}
+    .hero__plate img{object-position:50% 70%}
+  }
+
+  /* ------------------------------------------- 2 PILOTO AUTOMATICO (pin) -- */
+  .act-b{background:var(--petroleo-fundo)}
+  .b__stage{background:var(--petroleo-fundo);display:grid;align-items:center}
+  .b__speed{position:absolute;inset:-20% -10%;pointer-events:none;opacity:max(0,calc(1 - var(--sc-p,0)*1.7));transform:translate3d(calc(var(--sc-p,0)*-26vw),0,0);background:
+      repeating-linear-gradient(0deg,transparent 0 31px,rgba(144,224,239,.10) 31px 32px),
+      repeating-linear-gradient(0deg,transparent 0 77px,rgba(144,224,239,.14) 77px 78px);
+      -webkit-mask-image:linear-gradient(90deg,transparent,#000 30%,#000 70%,transparent);mask-image:linear-gradient(90deg,transparent,#000 30%,#000 70%,transparent)}
+  .b__line{position:absolute;left:var(--sc-gutter);right:var(--sc-gutter);top:50%;translate:0 -50%;margin:0;max-width:20ch;font-size:clamp(2.2rem,1.2rem + 4.4vw,5.2rem);line-height:1.02;letter-spacing:-.035em;font-weight:700;color:var(--sc-ink);text-wrap:balance}
+  .b__line--soft{color:var(--sc-ink-soft);font-weight:600;max-width:24ch}
+  .b__line--you{color:var(--sc-accent)}
+
+  /* --------------------------------------------------- 3 RESPIRAR (pico) -- */
+  .peak{background:var(--petroleo-fundo)}
+  .peak__stage{background:var(--petroleo-fundo);--bs:.03;--gnd:0}
+  .peak__ground{position:absolute;inset:0;background:var(--areia);opacity:var(--gnd);pointer-events:none;z-index:0}
+  .aperture{--d:min(66svh,86vw,640px);position:absolute;left:50%;top:50%;width:var(--d);height:var(--d);margin:calc(var(--d)/-2) 0 0 calc(var(--d)/-2);border-radius:50%;overflow:hidden;z-index:2;transform:scale(var(--bs));box-shadow:0 30px 80px -20px rgba(2,22,28,.7),0 0 0 1px rgba(255,255,255,.14);will-change:transform;background:#0b3c47}
+  .phase{position:absolute;z-index:5;left:var(--sc-gutter);right:var(--sc-gutter);margin:0;text-align:center;font-weight:800;letter-spacing:-.04em;line-height:1;color:#fff;font-size:clamp(3.2rem,2rem + 7vw,8.6rem);top:max(4.5rem,calc(50svh - var(--dh,33svh) - 1.18em));pointer-events:none}
+  .peak__stage{--dh:min(33svh,43vw,320px)}
+  .phase--segure{color:var(--sc-accent)}
+  .peak__note{position:absolute;z-index:5;left:var(--sc-gutter);right:var(--sc-gutter);bottom:clamp(4.2rem,9svh,6rem);margin:0 auto;max-width:34rem;text-align:center;color:#fff;font-size:var(--sc-t-lg);line-height:1.45;font-weight:600}
+  .peak__stage.is-light .peak__note{color:var(--tinta)}
+  @media (max-width:700px){.phase{font-size:clamp(3rem,16vw,4.6rem)}}
+
+  /* ------------------------------------------------- 4 CAMINHOS (pan) -- */
+  .act-pan{background:var(--areia)}
+  .pan__stage{background:var(--areia);color:var(--tinta);display:block}
+  .rail{height:100%;align-items:center;gap:clamp(1rem,2vw,1.75rem);padding:0 var(--sc-gutter) 0 var(--sc-gutter);width:max-content}
+  .rail__lead{flex:none;width:clamp(16rem,26vw,24rem);padding-right:clamp(1rem,3vw,3rem);color:var(--tinta)}
+  .rail__lead h2{font-size:clamp(2.2rem,1.3rem + 3vw,4rem);line-height:1;letter-spacing:-.035em;font-weight:800;margin:0}
+  .rail__lead p{margin:1.2rem 0 0;color:var(--tinta-suave);font-size:var(--sc-t-base);line-height:1.55;max-width:26ch}
+  .pn{flex:none;height:min(35rem,80svh);border-radius:var(--sc-r-lg);padding:clamp(1.3rem,2vw,1.9rem);display:flex;flex-direction:column;gap:.9rem;overflow:hidden;position:relative;color:var(--tinta);box-shadow:0 22px 40px -26px rgba(14,74,87,.55),inset 0 1px 0 rgba(255,255,255,.5)}
+  .pn h3{margin:0;font-size:clamp(1.5rem,1.2rem + 1vw,2.1rem);line-height:1.05;letter-spacing:-.03em;font-weight:800}
+  .pn p{margin:0;font-size:.98rem;line-height:1.55;color:inherit;opacity:.86;max-width:36ch}
+  .pn ul{margin:0;padding:0;list-style:none;font-size:.9rem;font-weight:600}
+  .pn li{padding:.5rem 0;border-top:1px solid color-mix(in oklab,currentColor 22%,transparent)}
+  .pn__tag{align-self:flex-start;font-size:.7rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:.35rem .8rem;border-radius:999px;background:color-mix(in oklab,currentColor 14%,transparent)}
+  .pn__foot{margin-top:auto}
+  .pn img{display:block;width:100%;height:11.5rem;min-height:4.5rem;object-fit:cover;border-radius:calc(var(--sc-r-lg) - 8px);flex:0 1 auto}
+  .pn--yoga{width:clamp(18rem,25vw,23rem);background:var(--ceu)}
+  .pn--exp{width:clamp(20rem,32vw,30rem);background:var(--petroleo);color:#fff}
+  .pn--exp .tlink{color:#fff}
+  .pn--exp .pn__tag{background:var(--turquesa);color:#04323c}
+  .pn--brunch{width:clamp(18rem,25vw,23rem);background:var(--pessego)}
+  .pn--work{width:clamp(18rem,25vw,23rem);background:#fff;gap:.7rem}
+  .pn--work img{height:12rem}
+  .pn--brunch img{height:12.5rem}
+  .pn--work li{padding:.38rem 0}
+  .pn--ment{width:clamp(17rem,23vw,21rem);background:var(--azul)}
+  .pn--parc{width:clamp(18rem,25vw,23rem);background:var(--petroleo-fundo);color:#fff}
+  .pn--parc .tlink{color:#fff}
+  .pn--parc img{height:14rem}
+  .pn--parc .pn__tag{background:rgba(255,255,255,.16)}
+  .pn .tlink{color:inherit}
+  @media (max-height:760px){.pn{height:min(35rem,88svh);gap:.55rem;padding:1.05rem}.pn p{font-size:.9rem;line-height:1.42}.pn h3{font-size:1.4rem}.pn li,.pn--work li{padding:.3rem 0}.pn__tag{font-size:.64rem;padding:.28rem .7rem}}
+  @media (max-width:700px){.pn{height:min(37rem,80svh)}.pn--yoga,.pn--brunch,.pn--parc{width:78vw}.pn--exp{width:84vw}.pn--work{width:78vw}.pn--ment{width:74vw}.rail__lead{width:78vw}}
+
+  /* -------------------------------------------- 5 MAR EXPERIENCE (flow) -- */
+  .exp{background:var(--ceu);padding:clamp(5rem,9vw,9rem) 0 clamp(4rem,7vw,7rem)}
+  .exp__grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(2rem,6vw,6rem);align-items:center}
+  .exp__fig{margin:0;border-radius:var(--sc-r-lg);overflow:hidden;aspect-ratio:3/4;box-shadow:0 30px 60px -30px rgba(14,74,87,.6)}
+  .exp__fig img{width:100%;height:100%;object-fit:cover;object-position:62% 50%}
+  .exp h2{font-size:clamp(2.1rem,1.3rem + 3.4vw,4.4rem);line-height:1;letter-spacing:-.035em;font-weight:800;max-width:15ch;text-wrap:balance;margin:0}
+  .exp .sig{margin:1.4rem 0 0;font-size:var(--sc-t-xl);font-weight:700;letter-spacing:-.025em;color:var(--acento-claro)}
+  .exp .lede{margin:1.2rem 0 0;font-size:var(--sc-t-lg);line-height:1.5;max-width:44ch;color:var(--tinta)}
+  .pillars{list-style:none;margin:2.2rem 0 0;padding:0;max-width:38rem}
+  .pillars li{display:grid;grid-template-columns:10.5rem 1fr;gap:1rem;padding:.95rem 0;border-top:1px solid rgba(14,74,87,.22);font-size:.98rem;line-height:1.45}
+  .pillars li:last-child{border-bottom:1px solid rgba(14,74,87,.22)}
+  .pillars b{font-weight:800;color:var(--tinta)}
+  .pillars span{color:var(--tinta-suave)}
+  .exp__meta{display:flex;flex-wrap:wrap;gap:2rem;margin:1.8rem 0 2rem;font-size:.9rem;color:var(--tinta-suave)}
+  .exp__meta b{display:block;font-size:1.5rem;letter-spacing:-.03em;color:var(--tinta);font-weight:800;line-height:1.1}
+  .moments{margin-top:clamp(4rem,8vw,7rem)}
+  .moments h3{margin:0 0 1.8rem;font-size:clamp(1.6rem,1.1rem + 1.8vw,2.7rem);line-height:1.05;letter-spacing:-.03em;font-weight:800;color:var(--tinta);max-width:20ch;text-wrap:balance}
+  .moments__row{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(.7rem,1.6vw,1.4rem);align-items:start}
+  .moments figure{margin:0}
+  .moments figure:nth-child(even){margin-top:clamp(1.5rem,4vw,3.5rem)}
+  .moments img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--sc-r-lg);box-shadow:0 24px 48px -28px rgba(14,74,87,.6)}
+  .moments figcaption{display:flex;gap:.7rem;align-items:baseline;margin-top:.8rem;font-weight:800;letter-spacing:-.01em;color:var(--tinta)}
+  .moments figcaption b{font-size:.75rem;letter-spacing:.14em;color:var(--acento-claro)}
+  .band{position:relative;margin:clamp(3.5rem,7vw,6rem) 0 0;border-radius:var(--sc-r-lg);overflow:hidden;aspect-ratio:21/9;box-shadow:0 30px 60px -30px rgba(14,74,87,.6)}
+  .band img{width:100%;height:118%;object-fit:cover;object-position:50% 60%;display:block}
+  .band figcaption{position:absolute;left:clamp(1rem,3vw,2.4rem);bottom:clamp(1rem,2.6vw,2rem);max-width:22ch;color:#fff;font-weight:800;font-size:clamp(1.2rem,.9rem + 1.4vw,2.1rem);line-height:1.08;letter-spacing:-.03em;text-shadow:0 2px 24px rgba(5,40,50,.7)}
+  .band::after{content:"";position:absolute;inset:auto 0 0 0;height:55%;background:linear-gradient(to top,rgba(5,40,50,.55),transparent);pointer-events:none}
+  .band figcaption{z-index:1}
+  @media (max-width:860px){.moments__row{grid-template-columns:repeat(2,1fr)}.band{aspect-ratio:4/3}}
+  .quotes{margin-top:clamp(4rem,8vw,7rem);display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem)}
+  .quote{margin:0;border-top:2px solid var(--tinta);padding-top:1.4rem}
+  .quote p{margin:0;font-size:clamp(1.15rem,1rem + .8vw,1.6rem);line-height:1.4;letter-spacing:-.02em;font-weight:600;color:var(--tinta);text-wrap:pretty}
+  .quote cite{display:block;margin-top:1.2rem;font-style:normal;font-weight:800;color:var(--acento-claro)}
+  .quote small{display:block;font-weight:500;color:var(--tinta-suave);margin-top:.15rem}
+  @media (max-width:860px){.exp__grid,.quotes{grid-template-columns:1fr}.exp__fig{max-width:26rem;aspect-ratio:4/5}.pillars li{grid-template-columns:1fr;gap:.2rem}}
+
+  /* ---------------------------------------------------- 6 METODO (pin) -- */
+  .act-m{background:var(--petroleo)}
+  .m__stage{background:var(--petroleo);display:grid;align-items:center}
+  .m__row{position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:center;gap:clamp(1rem,4vw,4rem);padding:0 var(--sc-gutter)}
+  .m__letter{font-size:clamp(12rem,32vw,30rem);line-height:.8;font-weight:800;letter-spacing:-.06em;color:var(--sc-accent);justify-self:center;opacity:.95}
+  .m__text h2{margin:0;font-size:clamp(2.3rem,1.3rem + 3.6vw,4.6rem);line-height:1;letter-spacing:-.035em;font-weight:800;color:#fff}
+  .m__text p{margin:1.3rem 0 0;font-size:var(--sc-t-lg);line-height:1.5;color:var(--sc-ink-soft);max-width:34ch}
+  .m__foot{position:absolute;left:var(--sc-gutter);right:var(--sc-gutter);bottom:clamp(4.4rem,9svh,6rem);text-align:center;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--sc-ink-soft)}
+  @media (max-width:700px){.m__row{grid-template-columns:1fr;align-content:center;gap:0}.m__letter{font-size:clamp(9rem,46vw,14rem);margin-bottom:.4rem}.m__text{text-align:center}.m__text p{margin-inline:auto}}
+
+  /* ----------------------------------------------------- 7 SOBRE (flow) -- */
+  .about{background:var(--areia);padding:clamp(5rem,9vw,9rem) 0}
+  .about__grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:clamp(2rem,6vw,6rem);align-items:center}
+  .about__fig{margin:0;border-radius:var(--sc-r-lg);overflow:hidden;aspect-ratio:4/5;box-shadow:0 30px 60px -30px rgba(14,74,87,.55)}
+  .about__fig img{width:100%;height:112%;object-fit:cover;object-position:50% 22%}
+  .about h2{font-size:clamp(2.2rem,1.4rem + 3.2vw,4.2rem);line-height:1;letter-spacing:-.035em;font-weight:800;margin:0;color:var(--tinta)}
+  .about p{margin:1.2rem 0 0;color:var(--tinta-suave);font-size:var(--sc-t-base);line-height:1.65;max-width:54ch}
+  .about p strong{color:var(--tinta)}
+  .about__role{margin-top:1.6rem;font-weight:700;color:var(--tinta);font-size:.95rem;letter-spacing:.02em}
+  .partners{margin-top:clamp(4rem,7vw,6.5rem);padding-top:clamp(2rem,3vw,2.6rem);border-top:2px solid var(--tinta);display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:end}
+  .partners h3{margin:0;font-size:clamp(1.7rem,1.2rem + 1.8vw,2.8rem);line-height:1.04;letter-spacing:-.03em;font-weight:800;color:var(--tinta);max-width:20ch}
+  .partners p{max-width:38ch;margin:0 0 1.2rem}
+  @media (max-width:860px){.about__grid,.partners{grid-template-columns:1fr}.about__fig{max-width:24rem}}
+
+  /* ------------------------------------------------ 8 FECHO / CONTATO -- */
+  .end{position:relative;min-height:112svh;background:var(--areia);overflow:clip;padding:clamp(5rem,8vw,8rem) 0 0;display:flex;flex-direction:column}
+  .end__plate{position:absolute;inset:0;z-index:0}
+  .end__plate img{width:100%;height:100%;object-fit:cover;object-position:50% 56%}
+  .end__scrim{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(255,248,238,.93) 0%,rgba(255,248,238,.84) 36%,rgba(255,248,238,.25) 62%,transparent 80%)}
+  .end__grid{position:relative;z-index:2;flex:1;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,6vw,6rem);align-items:center;padding-bottom:3rem}
+  .end h2{font-size:clamp(2.4rem,1.4rem + 4vw,5.2rem);line-height:.98;letter-spacing:-.04em;font-weight:800;color:var(--tinta);margin:0;max-width:11ch;text-wrap:balance}
+  .end .lede{margin:1.4rem 0 0;font-size:var(--sc-t-lg);line-height:1.5;color:var(--tinta);max-width:32ch;font-weight:500}
+  .end__cta{display:flex;flex-wrap:wrap;align-items:center;gap:1.2rem;margin-top:2rem}
+  .end__cta .tlink{color:var(--tinta)}
+  form{background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-radius:var(--sc-r-lg);padding:clamp(1.3rem,2.4vw,2rem);display:grid;gap:1rem;box-shadow:0 30px 60px -30px rgba(14,74,87,.6);color:var(--tinta)}
+  label{display:grid;gap:.4rem;font-weight:700;font-size:.82rem;color:var(--tinta)}
+  input,select,textarea{font:500 1rem var(--sc-font-text);padding:.85rem 1rem;border-radius:12px;border:1.5px solid rgba(14,74,87,.28);background:#fff;color:var(--tinta);width:100%}
+  textarea{min-height:5.5rem;resize:vertical}
+  .form-note{margin:0;min-height:1.3em;font-size:.82rem;color:var(--tinta-suave)}
+  .foot{position:relative;z-index:2;background:var(--petroleo-fundo);color:var(--sc-ink-soft);padding:1.8rem 0 6.2rem}
+  .foot__row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem}
+  .foot img{height:64px;width:auto}
+  .foot a{color:#fff;font-weight:700;text-decoration:none}
+  .foot small{display:block;font-size:.78rem;margin-top:.4rem}
+  @media (max-width:860px){
+    .end{min-height:0}
+    .end__grid{grid-template-columns:1fr}
+    .end__scrim{background:linear-gradient(180deg,rgba(255,248,238,.94) 0%,rgba(255,248,238,.86) 55%,rgba(255,248,238,.5) 100%)}
+  }
+  :focus-visible{outline:3px solid var(--turquesa);outline-offset:3px}
+  @media (prefers-reduced-motion:reduce){.index,.index a,.btn,.wa-float{transition:none}}
+</style>
+<noscript><style>[data-sc-cue],[data-sc-in],[data-sc-stagger]>*{opacity:1!important;transform:none!important}.hero__copy{opacity:1}.b__line{position:static;translate:none;margin:1rem var(--sc-gutter)}</style></noscript>
+</head>
+<body>
+
+<a class="skip" href="#caminhos">Ir para o conteúdo</a>
+<div class="sc-grain" aria-hidden="true"></div>
+
+<a class="brand" href="#chegada" aria-label="MAR, Movimento e Terapia. Início"><img id="brandImg" src="assets/logo-branco.png" alt="MAR, Movimento &amp; Terapia"></a>
+<button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="index">Menu</button>
+
+<nav class="index" id="index" aria-label="Capítulos" aria-hidden="true">
+  <button class="close-x" id="closeX" type="button">Fechar</button>
+  <ol>
+    <li><a href="#chegada">Chegada</a></li>
+    <li><a href="#respirar">Respirar</a></li>
+    <li><a href="#caminhos">Caminhos</a></li>
+    <li><a href="#experience">MAR Experience</a></li>
+    <li><a href="#metodo">Método</a></li>
+    <li><a href="#sobre">Quem conduz</a></li>
+    <li><a href="#contato">Falar com a MAR</a></li>
+  </ol>
+</nav>
+
+<div class="ring" id="ring" aria-hidden="true"><span class="ring__disc"><i></i></span><span class="ring__word" id="ringWord">Inspire</span></div>
+
+<a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="Falar com a MAR no WhatsApp" hidden>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.5 7.5L3 20.5l1.6-5.3A8.5 8.5 0 1 1 21 11.5z"/></svg>
+  <span>Falar com a MAR</span>
+</a>
+
+<main id="conteudo">
+
+<!-- 1 · CHEGADA: planos de foto e ondas -->
+<section class="hero" id="chegada" aria-label="Início">
+  <div class="hero__stage" id="heroStage">
+    <div class="hero__plate">
+      <img class="hero__sea" src="assets/hero-agua-clara.jpg" alt="Água clara e transparente chegando à areia branca, com a ilha ao fundo" fetchpriority="high">
+    </div>
+    <div class="hero__scrim" aria-hidden="true"></div>
+    <svg class="wave wave--far" viewBox="0 0 1600 600" preserveAspectRatio="none" aria-hidden="true"><path d="M0 150 C 180 70, 360 210, 600 140 S 1040 60, 1260 150 S 1500 190, 1600 120 L1600 600 L0 600 Z"/></svg>
+    <div class="hero__copy">
+      <h1>Movimento é terapia.</h1>
+      <p>Yoga, neurociência e mindfulness para você habitar o próprio corpo.</p>
+      <div class="hero__actions">
+        <a class="btn btn--solid" href="#contato" data-cta="Quero saber mais">Falar com a MAR</a>
+        <a class="tlink" href="#caminhos">Ver experiências</a>
+      </div>
+    </div>
+    <svg class="wave wave--mid" viewBox="0 0 1600 600" preserveAspectRatio="none" aria-hidden="true"><path d="M0 110 C 220 190, 420 40, 700 120 S 1120 200, 1340 100 S 1520 60, 1600 130 L1600 600 L0 600 Z"/></svg>
+    <svg class="wave wave--front" viewBox="0 0 1600 600" preserveAspectRatio="none" aria-hidden="true"><path d="M0 130 C 160 60, 380 180, 640 110 S 1000 40, 1240 120 S 1480 170, 1600 100 L1600 600 L0 600 Z"/></svg>
+  </div>
+</section>
+
+<!-- 2 · PILOTO AUTOMÁTICO: pin tipográfico -->
+<section class="act-b" id="piloto" data-sc-act="pin" data-sc-span="2.5" aria-label="Manifesto">
+  <div data-sc-stage class="b__stage">
+    <div class="b__speed" aria-hidden="true"></div>
+    <p class="b__line" data-sc-cue="0 0.30 0">Vivemos correndo antes de sentir.</p>
+    <p class="b__line b__line--soft" data-sc-cue="0.26 0.58">Mas o corpo não mente.</p>
+    <p class="b__line b__line--soft" data-sc-cue="0.52 0.82">Ele guarda histórias, emoções, tensões e possibilidades.</p>
+    <p class="b__line b__line--you" data-sc-cue="0.76 0.99">E se você parasse por um minuto?</p>
+  </div>
+</section>
+
+<!-- 3 · RESPIRAR: o pico. Aberta pela rolagem -->
+<section class="peak" id="respirar" data-sc-act="scrub" data-sc-span="3.9" data-sc-dwell="0.2" aria-label="Respirar">
+  <div data-sc-stage class="peak__stage" id="peakStage">
+    <div class="peak__ground" aria-hidden="true"></div>
+    <div class="aperture" id="aperture">
+      <img class="sc-stage__poster" src="assets/peak-masc-poster.jpg" alt="Marcella conduz a MAR Experience diante de uma fila de atletas na quadra de areia">
+      <video data-sc-scrub data-sc-src="assets/peak-masc.mp4" muted playsinline aria-hidden="true"></video>
+    </div>
+    <p class="phase" data-sc-cue="0.07 0.33 0.1 0.12" aria-hidden="true">Inspire</p>
+    <p class="phase phase--segure" data-sc-cue="0.34 0.54 0.08 0.08" aria-hidden="true">Segure</p>
+    <p class="phase" data-sc-cue="0.56 0.80 0.1 0.12" aria-hidden="true">Expire</p>
+    <p class="peak__note" data-sc-cue="0.88 0.985 0.25 0.3">Antes de cada categoria, no Desafio do Saan: respiração, mobilidade e presença, na areia.</p>
+  </div>
+</section>
+
+<!-- 4 · CAMINHOS: trilho lateral -->
+<section class="act-pan" id="caminhos" data-sc-act="pan" data-sc-span="2.5" aria-label="Serviços">
+  <div data-sc-stage class="pan__stage">
+    <div class="rail" data-sc-pan="0.04">
+      <div class="rail__lead">
+        <h2>Escolha por onde começar.</h2>
+        <p>Da primeira aula ao acompanhamento sob medida.</p>
+      </div>
+
+      <article class="pn pn--yoga">
+        <img src="assets/yoga-parque.jpg" alt="Duas pessoas em cachorro olhando para baixo, sobre tapetes de yoga, em um parque com prédios ao fundo" loading="lazy" style="object-position:50% 80%">
+        <span class="pn__tag">Online e presencial</span>
+        <h3>Aulas de Yoga</h3>
+        <p>Para quem quer cultivar presença e equilíbrio emocional, inclusive quem está começando.</p>
+        <ul><li>Vinyasa yoga, flow e movimentos conscientes</li></ul>
+        <a class="tlink pn__foot" href="#contato" data-cta="Aulas de Yoga">Quero saber mais</a>
+      </article>
+
+      <article class="pn pn--exp">
+        <img src="assets/ev-presenca.jpg" alt="Marcella e duas atletas em postura de árvore, com as mãos no peito, na quadra de areia" loading="lazy" style="object-position:38% 50%">
+        <span class="pn__tag">Presencial</span>
+        <h3>MAR Experience</h3>
+        <p>Yoga, mindfulness e preparação mental para atletas de areia, aplicados no próprio evento.</p>
+        <ul><li>Formato customizado com o parceiro</li></ul>
+        <a class="tlink pn__foot" href="#experience">Ver como funciona</a>
+      </article>
+
+      <article class="pn pn--brunch">
+        <img src="assets/yogamar.jpg" alt="Praia ao entardecer, com o céu alaranjado, o mar calmo e a areia molhada" loading="lazy">
+        <span class="pn__tag">Presencial</span>
+        <h3>YogaMar</h3>
+        <p>Yoga na praia, com café da manhã no espaço parceiro e um momento de troca.</p>
+        <ul><li>Aulas de yoga em espaços abertos, como praia e parques</li></ul>
+        <a class="tlink pn__foot" href="#contato" data-cta="YogaMar">Quero saber mais</a>
+      </article>
+
+      <article class="pn pn--work">
+        <img src="assets/workshop-papo-de-mae.jpg" alt="Capa do workshop Papo de Mãe: regulação emocional na maternidade, com flores em aquarela rosa" loading="lazy" style="object-position:50% 52%">
+        <span class="pn__tag">Online e presencial</span>
+        <h3>Workshops</h3>
+        <p>Neurociência traduzida para o dia a dia, com práticas simples para entender corpo e emoções.</p>
+        <ul><li>Neurociência da Regulação Emocional</li></ul>
+        <a class="tlink pn__foot" href="#contato" data-cta="Workshops">Avise-me quando abrir</a>
+      </article>
+
+      <article class="pn pn--ment">
+        <img src="assets/mentoria-sorriso2.jpg" alt="Marcella sorrindo e gesticulando enquanto conduz uma conversa, na quadra de areia" loading="lazy" style="object-position:50% 8%">
+        <span class="pn__tag">Individual ou em grupo</span>
+        <h3>Mentoria MAR</h3>
+        <p>Individual ou em grupo, com um olhar que une corpo, mente e propósito. A Marcella também atua como mentora de carreira e maternidade.</p>
+        <a class="tlink pn__foot" href="#contato" data-cta="Mentoria MAR">Quero conversar</a>
+      </article>
+
+      <article class="pn pn--parc">
+        <img src="assets/espaco-mar-namaste.jpg" alt="Marcella com as mãos em prece junto ao peito, sorrindo, diante da faixa azul-clara do Espaço MAR na quadra de areia" loading="lazy" style="object-position:50% 50%">
+        <span class="pn__tag">Sob medida</span>
+        <h3>Para parceiros e empresas</h3>
+        <p>Experiências e workshops de bem-estar e saúde mental para arenas, torneios, hospedarias, cafés, marcas e empresas.</p>
+        <a class="tlink pn__foot" href="#sobre">Ser parceiro</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · MAR EXPERIENCE: revelação + falas -->
+<section class="exp on-light" id="experience" data-sc-act="flow" aria-labelledby="exp-t">
+  <div class="sc-wrap">
+    <div class="exp__grid">
+      <figure class="exp__fig" data-sc-reveal="left" data-sc-reveal-at="0.01 0.1">
+        <img src="assets/ev-prepare.jpg" alt="Marcella de perfil, em pé na areia, com as mãos em prece junto ao peito" loading="lazy" style="object-position:46% 50%">
+      </figure>
+      <div data-sc-in data-sc-stagger="80">
+        <h2 id="exp-t">Prepare o corpo. Treine a mente. Entre em quadra pronto para performar.</h2>
+        <p class="sig">Respire. Conecte-se. Confie. Performe.</p>
+        <p class="lede">Uma vivência prática de yoga, mindfulness e preparação mental para atletas de esportes de areia, aplicada no próprio campeonato.</p>
+        <ul class="pillars">
+          <li><b>Respiração</b><span>Regula o sistema nervoso e reduz a ansiedade.</span></li>
+          <li><b>Intenção</b><span>Psicologia positiva e forças pessoais.</span></li>
+          <li><b>Mobilidade</b><span>Yoga adaptado ao esporte e prevenção de lesões.</span></li>
+          <li><b>Preparação mental</b><span>Mindfulness e visualização esportiva.</span></li>
+        </ul>
+        <div class="exp__meta"><div><b>Sob medida</b>customizada com o parceiro</div></div>
+        <a class="btn btn--dark" href="#contato" data-cta="MAR Experience no meu evento">Falar com a MAR</a>
+      </div>
+    </div>
+
+    <div class="moments" data-sc-in data-sc-stagger="110">
+      <h3>Um aquecimento diferente, do começo ao fim.</h3>
+      <div class="moments__row">
+        <figure><img src="assets/ev-chegada2.jpg" alt="Marcella de costas, de frente para atletas em pé na areia, no começo da vivência" loading="lazy"><figcaption><b>01</b>Chegada</figcaption></figure>
+        <figure><img src="assets/ev-respiracao2.jpg" alt="Marcella de olhos fechados, com uma mão no peito e outra na barriga, guiando a respiração" loading="lazy"><figcaption><b>02</b>Respiração</figcaption></figure>
+        <figure><img src="assets/ev-mobilidade.jpg" alt="Atleta em flexão de tronco, alongando na areia" loading="lazy"><figcaption><b>03</b>Mobilidade</figcaption></figure>
+        <figure><img src="assets/ev-presenca.jpg" alt="Marcella e atletas em postura de árvore na quadra" loading="lazy" style="object-position:30% 50%"><figcaption><b>04</b>Presença</figcaption></figure>
+      </div>
+    </div>
+
+    <figure class="band">
+      <img src="assets/ev-grupo2.jpg" alt="Marcella e o time de atletas em agachamento lateral, com os braços erguidos, fazendo mobilidade juntos na quadra de areia" data-sc-parallax="-0.7" loading="lazy">
+      <figcaption>Antes de cada categoria, o time inteiro em movimento.</figcaption>
+    </figure>
+
+    <div class="quotes" data-sc-in data-sc-stagger="120">
+      <figure class="quote">
+        <p>“Quando a gente fez as técnicas, principalmente de respiração, de fechar o olho e de sentir a respiração, sinto que me ajudou muito na hora do saque, que é onde eu mais fico nervosa.”</p>
+        <figcaption><cite>Piera</cite><small>1º lugar no Misto Iniciante, Desafio do Saan</small></figcaption>
+      </figure>
+      <figure class="quote">
+        <p>“Pra mim, acho que o que mais me ajudou com certeza foi a respiração, porque eu sou muito cansado, então a respiração me ajudou a ganhar um pouco de fôlego do que normalmente eu não tenho.”</p>
+        <figcaption><cite>Ricardo</cite><small>1º lugar no Misto Iniciante, Desafio do Saan</small></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · MÉTODO: pin com três estados -->
+<section class="act-m" id="metodo" data-sc-act="pin" data-sc-span="2.4" aria-label="Método MAR">
+  <div data-sc-stage class="m__stage">
+    <div class="m__row" data-sc-cue="0 0.34 0">
+      <div class="m__letter" aria-hidden="true">M</div>
+      <div class="m__text"><h2>Movimento. Perceba o corpo.</h2><p>Ele guarda tensões, emoções e informações valiosas. A transformação começa por ele.</p></div>
+    </div>
+    <div class="m__row" data-sc-cue="0.30 0.66">
+      <div class="m__letter" aria-hidden="true">A</div>
+      <div class="m__text"><h2>Autorregulação. Respire e regule.</h2><p>Respiração e atenção plena para acalmar o sistema nervoso nos momentos de pressão.</p></div>
+    </div>
+    <div class="m__row" data-sc-cue="0.62 0.98">
+      <div class="m__letter" aria-hidden="true">R</div>
+      <div class="m__text"><h2>Reconexão. Volte ao presente.</h2><p>Saia do piloto automático e volte a habitar o corpo, as emoções e a própria vida.</p></div>
+    </div>
+    <p class="m__foot">Yoga · Psicologia · Neurociência · Mindfulness</p>
+  </div>
+</section>
+
+<!-- 7 · QUEM CONDUZ -->
+<section class="about on-light" id="sobre" data-sc-act="flow" aria-labelledby="about-t">
+  <div class="sc-wrap">
+    <div class="about__grid">
+      <figure class="about__fig"><img src="assets/marcella-conduz.jpg" alt="Marcella Bertoncini conduzindo uma vivência, com as mãos à frente do corpo" data-sc-parallax="-0.9" loading="lazy"></figure>
+      <div data-sc-in data-sc-stagger="80">
+        <h2 id="about-t">Marcella Bertoncini</h2>
+        <p class="about__role">Psicóloga, neurocientista, especialista em mindfulness e instrutora de yoga.</p>
+        <p>Da infância à adolescência, aprendeu a se expressar pelo corpo: dança, música, teatro e esporte. Na pandemia, viveu crises de ansiedade que a fizeram voltar ao corpo: parar, sentar, respirar e mover.</p>
+        <p>Foi aí que a neurociência, o mindfulness e o yoga chegaram e mostraram o que ela sempre soube: corpo e mente são um só, e muita gente vive no piloto automático.</p>
+        <p>Por isso nasce a MAR, para ajudar você a <strong>habitar o próprio corpo, as emoções e dar mais significado à vida</strong>.</p>
+        <p>Quem convive com ela a descreve como uma pessoa agregadora e bem-humorada, que traz confiança ao ambiente e cria conexão, escuta ativa e acolhimento. Sua marca é essa capacidade genuína de se conectar com as pessoas e de proporcionar experiências positivas, que mudam perspectivas.</p>
+      </div>
+    </div>
+    <div class="partners" data-sc-in data-sc-stagger="80">
+      <h3>Leve a MAR para o seu torneio, espaço ou empresa.</h3>
+      <div>
+        <p>Arenas, circuitos, federações, academias, hospedarias, cafés, marcas e empresas. A experiência é customizada para a identidade do parceiro.</p>
+        <a class="btn btn--dark" href="#contato" data-cta="Proposta de parceria">Falar com a MAR</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 · DESCANSE: íris sobre o amanhecer, CTA, contato -->
+<section class="end on-light" id="contato" data-sc-act="flow" aria-labelledby="end-t">
+  <div class="end__plate" data-sc-reveal="iris" data-sc-reveal-at="0.04 0.42"><img src="assets/close.jpg" alt="Amanhecer na praia, com palmeiras e o mar ao fundo" loading="lazy"></div>
+  <div class="end__scrim" aria-hidden="true"></div>
+  <div class="sc-wrap end__grid">
+    <div data-sc-in data-sc-stagger="90">
+      <h2 id="end-t">Respire fundo. Depois, vamos conversar.</h2>
+      <p class="lede">Conte o que você procura e a gente responde com carinho. Valores sob consulta, conforme o formato.</p>
+      <div class="end__cta">
+        <a class="btn btn--dark" id="waMain" href="https://instagram.com/mar_espaco" target="_blank" rel="noopener">Falar com a MAR</a>
+        <a class="tlink" href="https://instagram.com/mar_espaco" target="_blank" rel="noopener">@mar_espaco</a>
+      </div>
+    </div>
+    <form id="form" method="post" action="#contato" novalidate data-sc-in>
+      <label>Seu nome<input type="text" name="nome" autocomplete="name" required></label>
+      <label>Tenho interesse em
+        <select name="interesse" id="interesse">
+          <option>Aulas de Yoga</option>
+          <option>MAR Experience no meu evento</option>
+          <option>YogaMar</option>
+          <option>Workshops</option>
+          <option>Mentoria MAR</option>
+          <option>Proposta de parceria</option>
+          <option>Quero saber mais</option>
+        </select>
+      </label>
+      <label>Mensagem<textarea name="msg" placeholder="Conte um pouco sobre o que você procura"></textarea></label>
+      <button class="btn btn--dark" type="submit">Falar com a MAR</button>
+      <p class="form-note" id="note" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+  <footer class="foot">
+    <div class="sc-wrap foot__row">
+      <img src="assets/logo-branco.png" alt="MAR, Movimento &amp; Terapia">
+      <div><a href="https://instagram.com/mar_espaco" target="_blank" rel="noopener">@mar_espaco</a><small>© 2026 MAR, Movimento &amp; Terapia. Terapia é Movimento.</small></div>
+    </div>
+  </footer>
+</section>
+
+</main>
+
+<script src="scrollcraft.js"></script>
+<script>
+  ScrollCraft.mount(document.body);
+
+  /* ===== CONTATO: número com DDI+DDD, só dígitos ===== */
+  var CONTATO = { whatsapp: '5511995355320', instagram: 'mar_espaco' };
+
+  (function(){
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    var $ = function(id){ return document.getElementById(id); };
+    var clamp = function(v,a,b){ return Math.min(b,Math.max(a,v)); };
+    var ease = function(t){ t = clamp(t,0,1); return t*t*(3-2*t); };
+
+    /* ---- WhatsApp ---- */
+    var msg = encodeURIComponent('Olá, MAR! Vim pelo site e gostaria de saber mais.');
+    if (CONTATO.whatsapp) {
+      var wa = 'https://wa.me/' + CONTATO.whatsapp + '?text=' + msg;
+      $('waFloat').hidden = false; $('waFloat').href = wa;
+      $('waMain').href = wa;
+    }
+
+    /* ---- menu de capítulos ---- */
+    var idx = $('index'), mbtn = $('menuBtn'), lastFocus = null;
+    function openMenu(){ lastFocus = document.activeElement; idx.classList.add('open'); idx.setAttribute('aria-hidden','false'); mbtn.setAttribute('aria-expanded','true'); idx.querySelector('a').focus(); document.body.style.overflow='hidden'; }
+    function closeMenu(){ idx.classList.remove('open'); idx.setAttribute('aria-hidden','true'); mbtn.setAttribute('aria-expanded','false'); document.body.style.overflow=''; if(lastFocus) lastFocus.focus(); }
+    mbtn.addEventListener('click', openMenu);
+    $('closeX').addEventListener('click', closeMenu);
+    idx.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ closeMenu(); }); });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape' && idx.classList.contains('open')) closeMenu(); });
+
+    /* ---- CTAs preenchem o interesse ---- */
+    document.querySelectorAll('[data-cta]').forEach(function(a){
+      a.addEventListener('click', function(){
+        var sel = $('interesse'), v = a.dataset.cta;
+        for (var i=0;i<sel.options.length;i++){ if(sel.options[i].text===v){ sel.selectedIndex=i; break; } }
+      });
+    });
+
+    /* ---- formulário ---- */
+    $('form').addEventListener('submit', function(e){
+      e.preventDefault();
+      var f = e.target, note = $('note'), nome = f.nome.value.trim();
+      if(!nome){ note.textContent = 'Por favor, escreva seu nome.'; f.nome.focus(); return; }
+      var texto = 'Olá, MAR! Sou ' + nome + '. Tenho interesse em: ' + f.interesse.value + '.' + (f.msg.value.trim() ? ' ' + f.msg.value.trim() : '');
+      if (CONTATO.whatsapp) {
+        window.open('https://wa.me/' + CONTATO.whatsapp + '?text=' + encodeURIComponent(texto), '_blank', 'noopener');
+        note.textContent = 'Abrindo o WhatsApp com a sua mensagem.';
+      } else {
+        var done = function(){ note.textContent = 'Mensagem copiada. Abrimos o Instagram da MAR: é só colar no direct.'; window.open('https://ig.me/m/' + CONTATO.instagram, '_blank', 'noopener'); };
+        if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(texto).then(done, done); } else { done(); }
+      }
+    });
+
+    /* ---- RESPIRAÇÃO: o movimento-assinatura ---- */
+    var hero = $('chegada'), heroStage = $('heroStage'), peak = $('respirar'), peakStage = $('peakStage'), aperture = $('aperture');
+    var ring = $('ring'), ringWord = $('ringWord'), brandImg = $('brandImg');
+    var mx = 0, my = 0, tmx = 0, tmy = 0;
+    if (fine && !reduce) {
+      window.addEventListener('pointermove', function(e){ tmx = (e.clientX / innerWidth - .5) * 2; tmy = (e.clientY / innerHeight - .5) * 2; }, {passive:true});
+    }
+
+    /* Respiração do pico: ponto, inspira, segura, expira, repousa. */
+    function peakBreath(p){
+      if (p < 0.06) return 0.02;
+      if (p < 0.40) return 0.02 + 0.98 * ease((p - 0.06) / 0.34);
+      if (p < 0.54) return 1;
+      if (p < 0.88) return 1 - 0.36 * ease((p - 0.54) / 0.34);
+      return 0.64;
+    }
+
+    var prevB = 0, word = '', wordT = 0;
+    function setWord(w){ if (w === word) return; word = w; ringWord.style.opacity = 0; clearTimeout(wordT); wordT = setTimeout(function(){ ringWord.textContent = w; ringWord.style.opacity = 1; }, 110); }
+
+    /* Fundos claros e escuros: o anel e a marca trocam de tinta. */
+    var lightZones = [ $('caminhos'), $('experience'), $('sobre'), $('contato') ];
+    function overLight(y){
+      var probe = innerHeight - 40;
+      for (var i = 0; i < lightZones.length; i++) {
+        var r = lightZones[i].getBoundingClientRect();
+        if (r.top <= probe && r.bottom >= probe) return i === 3 ? 'photo' : true;
+      }
+      return false;
+    }
+    function overLightTop(){
+      for (var i = 0; i < lightZones.length; i++) {
+        var r = lightZones[i].getBoundingClientRect();
+        if (r.top <= 50 && r.bottom >= 50) return true;
+      }
+      return peakGround > .5;
+    }
+    var peakGround = 0;
+
+    function frame(){
+      var y = window.scrollY, vh = innerHeight;
+
+      /* hero */
+      var hr = hero.getBoundingClientRect();
+      var hp = reduce ? 0 : clamp(-hr.top / Math.max(1, hr.height - vh), 0, 1);
+      heroStage.style.setProperty('--hp', hp.toFixed(4));
+      mx += (tmx - mx) * .06; my += (tmy - my) * .06;
+      heroStage.style.setProperty('--mx', mx.toFixed(3)); heroStage.style.setProperty('--my', my.toFixed(3));
+
+      /* pico */
+      var pr = peak.getBoundingClientRect();
+      var inPeak = pr.top < vh * .5 && pr.bottom > vh * .5;
+      var p = parseFloat(peak.style.getPropertyValue('--sc-p')) || 0;
+      var pb = peakBreath(p);
+      var scale;
+      if (reduce) { scale = .8; peakGround = 0; }
+      else { scale = .03 + .97 * pb; peakGround = ease((p - .82) / .10); }
+      peakStage.classList.toggle('is-light', peakGround > .5);
+      peakStage.style.setProperty('--bs', scale.toFixed(4));
+      peakStage.style.setProperty('--gnd', peakGround.toFixed(3));
+
+      /* anel global: um ciclo a cada 3,4 telas; no pico segue a abertura */
+      var b = (0.5 - 0.5 * Math.cos(2 * Math.PI * y / (vh * 3.4)));
+      if (inPeak) b = pb;
+      /* o fecho resolve: perto do fim da página a respiração repousa */
+      var maxY = document.documentElement.scrollHeight - vh;
+      var endT = ease((y - (maxY - vh * 1.05)) / (vh * .95));
+      b = b * (1 - endT);
+      if (reduce) b = .5;
+      ring.style.setProperty('--rs', (.5 + .5 * b).toFixed(3));
+      var d = b - prevB; prevB = b;
+      if (reduce) setWord('Respire');
+      else if (inPeak && p < 0.06) setWord('Descanse');
+      else if (d > 0.0015) setWord('Inspire');
+      else if (d < -0.0015) setWord('Expire');
+      else setWord(b > .92 ? 'Segure' : (b < .12 ? 'Descanse' : word || 'Inspire'));
+
+      /* tinta do anel e da marca sobre fundos claros */
+      var light = overLight(y);
+      ring.classList.toggle('on-lightbg', light === true);
+      var topLight = overLightTop();
+      brandImg.style.filter = topLight ? 'brightness(0) saturate(100%) invert(22%) sepia(60%) saturate(700%) hue-rotate(150deg) brightness(.85)' : 'none';
+      mbtn.style.color = topLight ? '#0E4A57' : '#fff';
+      mbtn.style.background = topLight ? 'rgba(255,255,255,.7)' : 'rgba(14,74,87,.55)';
+
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  })();
+</script>
+</body>
+</html>
